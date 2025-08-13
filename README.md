@@ -1,11 +1,23 @@
-# 🐊 Gator Project
-
-Gator is a backend project built in **Go (Golang)**.
+# 🐊 Gator
+Gator is a CLI tool built in Golang for aggregating and managing RSS feeds. 
 It provides a simple RSS feed aggregation system with user authentication and feed management features.  
+
 
 ---
 
+
 ## ✨ Features / Commands
+
+User authentication: register, login, logout, list users
+
+Feed management: add, list, follow, unfollow, show following
+
+Continuous background aggregation of posts with customizable intervals
+
+Browse posts, clear posts, and reset the database
+
+🛠 Built with: Go 1.24.5, PostgreSQL, Goose (migrations), SQLC (type-safe SQL queries)
+
 
 ### 👤 User Management
 - `register` – 📝 Register a new user.
