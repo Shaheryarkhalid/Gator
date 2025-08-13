@@ -1,11 +1,11 @@
 package main
 
 import (
+	"context"
 	"fmt"
+	"github.com/Shaheryarkhalid/Gator/internal/database"
 	"strings"
 	"time"
-
-	"github.com/Shaheryarkhalid/Gator/internal/database"
 )
 
 func handlerAgg(s *state, cmd command, _ database.User) error {
@@ -28,11 +28,13 @@ func handlerAgg(s *state, cmd command, _ database.User) error {
 
 		}
 	}
-	// rssFeed, err := fetchFeed(context.Background(), "https://www.wagslane.dev/index.xml")
-	// if err != nil {
-	// 	return err
-	// }
-	// data, err := json.MarshalIndent(rssFeed, "", "  ")
-	// fmt.Println(string(data))
-	// return nil
+}
+
+func handlerClear(s *state, cmd command, _ database.User) error {
+	err := s.db.DeleteAllPosts(context.Background())
+	if err != nil {
+		return fmt.Errorf("Error removing the posts: %w", err)
+	}
+	fmt.Println("All posts removed successfully.")
+	return nil
 }

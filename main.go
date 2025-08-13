@@ -33,18 +33,21 @@ func main() {
 	programCommands := commands{
 		registeredCommands: make(map[string]func(*state, command) error),
 	}
-	programCommands.register("reset", handlerReset)
 	programCommands.register("register", handlerRegister)
 	programCommands.register("login", handlerLogin)
 	programCommands.register("logout", handlerLogout)
 	programCommands.register("users", middlewareLoggedIn(handlerUsers))
+
 	programCommands.register("addfeed", middlewareLoggedIn(handlerAddFeed))
 	programCommands.register("feeds", middlewareLoggedIn(handlerFeeds))
 	programCommands.register("follow", middlewareLoggedIn(handlerFollow))
 	programCommands.register("unfollow", middlewareLoggedIn(handlerUnFollow))
 	programCommands.register("following", middlewareLoggedIn(handlerFollowing))
+
 	programCommands.register("agg", middlewareLoggedIn(handlerAgg))
 	programCommands.register("browse", middlewareLoggedIn(handlerBrowse))
+	programCommands.register("clear", middlewareLoggedIn(handlerClear))
+	programCommands.register("reset", handlerReset)
 	arguments := os.Args
 	if len(arguments) < 2 {
 		fmt.Println("Command name cannot be empty.")

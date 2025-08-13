@@ -12,6 +12,7 @@ func handlerReset(s *state, cmd command) error {
 	}
 	err = s.db.DeleteAllUsers(context.Background())
 	err = s.db.DeleteAllFeeds(context.Background())
+	err = s.db.DeleteAllPosts(context.Background())
 	if err != nil {
 		return fmt.Errorf("Error reseting the database: %v", err)
 	}

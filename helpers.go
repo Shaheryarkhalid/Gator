@@ -44,7 +44,8 @@ func scrapeFeeds(s *state) error {
 	}
 	rssFeed, err := fetchFeed(context.Background(), nextFeed.Url)
 	if err != nil {
-		fmt.Println("Error trying to fetch feed: %w", err)
+		fmt.Printf("Error trying to fetch feed: %v\n", err)
+		return nil
 	}
 	for _, rssItem := range rssFeed.Channel.Item {
 		pubAt, _ := time.Parse("Mon, 02 Jan 2006 15:04:05 -0700", rssItem.PubDate)
@@ -68,21 +69,20 @@ func scrapeFeeds(s *state) error {
 	return nil
 }
 
-func fetchFeed(ctx context.Context, feedUrl string) (*RSSFeed, error) {
-	rssFeed := RSSFeed{}
+func fetchFeed(ctx context.Context, feedUrl string) (rssFeed *RSSFeed, err error) {
 	req, err := http.NewRequestWithContext(ctx, "GET", feedUrl, nil)
-	req.Header.Set("User-Agent", "gator")
 	if err != nil {
-		return &rssFeed, fmt.Errorf("Error creating the request: %v", err)
+		return rssFeed, fmt.Errorf("Error creating the request: %v", err)
 	}
+	req.Header.Set("User-Agent", "gator")
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
-		return &rssFeed, fmt.Errorf("Error trying to get response from url: %v", err)
+		return rssFeed, fmt.Errorf("Error trying to get response from url: %v", err)
 	}
 	defer resp.Body.Close()
 	err = xml.NewDecoder(resp.Body).Decode(&rssFeed)
 	if err != nil {
-		return &rssFeed, fmt.Errorf("Error happened while decoding the response: %v", err)
+		return rssFeed, fmt.Errorf("Error happened while decoding the response: %v", err)
 	}
 	rssFeed.Channel.Title = html.UnescapeString(rssFeed.Channel.Title)
 	rssFeed.Channel.Description = html.UnescapeString(rssFeed.Channel.Description)
@@ -91,5 +91,5 @@ func fetchFeed(ctx context.Context, feedUrl string) (*RSSFeed, error) {
 		item.Description = html.UnescapeString(item.Description)
 		rssFeed.Channel.Item[idx] = item
 	}
-	return &rssFeed, nil
+	return rssFeed, nil
 }

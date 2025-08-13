@@ -3,3 +3,9 @@ INSERT INTO posts(id, created_at, updated_at, title,url, description , published
 
 -- name: GetPostsForUser :many
 SELECT * from posts where feed_id in (SELECT feed_id from feed_follows where user_id = $1) limit $2;
+
+
+-- name: DeleteAllPosts :exec
+
+DELETE from posts;
+
