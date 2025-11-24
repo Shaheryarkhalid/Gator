@@ -133,5 +133,5 @@ go build
 ---
 
 Gator is now ready to use! 
-Start by registering a user, adding feeds, and following feeds to begin aggregating content. 📈
+Start by registering a user, adding feeds, and following feeds to begin aggregating content. 
 
