@@ -1,4 +1,4 @@
-# 🐊 Gator
+#  Gator
 Gator is a CLI tool built in Golang for aggregating and managing RSS feeds. 
 It provides a simple RSS feed aggregation system with user authentication and feed management features.  
 
@@ -6,7 +6,7 @@ It provides a simple RSS feed aggregation system with user authentication and fe
 ---
 
 
-## ✨ Features / Commands
+##  Features / Commands
 
 User authentication: register, login, logout, list users
 
@@ -19,78 +19,78 @@ Browse posts, clear posts, and reset the database
 🛠 Built with: Go 1.24.5, PostgreSQL, Goose (migrations), SQLC (type-safe SQL queries)
 
 
-### 👤 User Management
-- `register` – 📝 Register a new user.
+###  User Management
+- `register` –  Register a new user.
     ```
         Gator register <username>
     ```
-- `login` – 🔑 Login as an existing user.
+- `login` –  Login as an existing user.
     ```
         Gator login <username>
     ```
-- `logout` – 🚪 Logout the current user.
+- `logout` –  Logout the current user.
     ```
         Gator logout
     ```
-- `users` – 👥 Display all user names in the database.
+- `users` –  Display all user names in the database.
     ```
         Gator users
     ```
 
-### 📰 Feed Management
-- `addfeed` – ➕ Add a feed with a name and URL (requires login).
+###  Feed Management
+- `addfeed` –  Add a feed with a name and URL (requires login).
     ```
         Gator addfeed <name> <url>
     ```
-- `feeds` – 📃 List all feeds in the system (requires login).
+- `feeds` –  List all feeds in the system (requires login).
     ```
         Gator feeds
     ```
-- `follow` – ⭐ Follow a feed created by another user (requires login).
+- `follow` –  Follow a feed created by another user (requires login).
    ```
         Gator follow <url>
     ```
-- `unfollow` – ❌ Unfollow a feed or remove a feed created by the current user (requires login).
+- `unfollow` –  Unfollow a feed or remove a feed created by the current user (requires login).
    ```
         Gator unfollow <url>
     ```
-- `following` – 👀 Show all feeds the current user is following (requires login).
+- `following` –  Show all feeds the current user is following (requires login).
    ```
         Gator following
     ```
 
-### ⚡ Aggregation & Browsing
-- `agg` – 🔄 Main background command. Continuously fetches posts from all feeds, using `timebetween` to control the interval between requests (requires login).
+###  Aggregation & Browsing
+- `agg` –  Main background command. Continuously fetches posts from all feeds, using `timebetween` to control the interval between requests (requires login).
    ```
         Gator agg <time_between_requests example(1h, 1m, 1s)>
     ```
-- `browse` – 📖 Browse posts from feeds followed by the current user (requires login).
+- `browse` –  Browse posts from feeds followed by the current user (requires login).
    ```
         Gator browse
     ```
 
-### 🛠 Maintenance
-- `clear` – 🧹 Completely clears all posts for a fresh start (requires login).
+###  Maintenance
+- `clear` –  Completely clears all posts for a fresh start (requires login).
    ```
         Gator clear
     ```
-- `reset` – 🔁 Resets the entire database, removing all users, feeds, and posts, and logs out the current user. Resets the program state.
+- `reset` –  Resets the entire database, removing all users, feeds, and posts, and logs out the current user. Resets the program state.
    ```
         Gator reset
     ```
 
 ---
 
-## 🧩 Dependencies
+##  Dependencies
 
-- Go 1.24.5 🟢
-- PostgreSQL 🐘
-- Goose – database migration tool 🛠
-- SQLC – type-safe SQL query generator 🔧
+- Go 1.24.5 
+- PostgreSQL 
+- Goose – database migration tool 
+- SQLC – type-safe SQL query generator 
 
 ---
 
-## 🚀 Setup & Usage
+##  Setup & Usage
 
 1. **Create config file**  
 
@@ -132,6 +132,6 @@ go build
 
 ---
 
-Gator is now ready to use! 🐊  
+Gator is now ready to use! 
 Start by registering a user, adding feeds, and following feeds to begin aggregating content. 📈
 
